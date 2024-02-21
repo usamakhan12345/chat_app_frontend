@@ -1,0 +1,19 @@
+.signUpwraper{
+    height: 100vh;
+    width: 100%;
+    background-image: url('../../assets/chatbackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    .signupContainer{
+        height: 450px;
+        width: 400px;
+        background-color: #DDFFE9;
+        @media screen and  (max-width : 600px) {
+            width : 100%
+        }
+    }   
+}

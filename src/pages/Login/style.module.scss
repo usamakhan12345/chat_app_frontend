@@ -1,0 +1,16 @@
+.loginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 35px;
+    .loginInput{
+       margin-bottom: 30px;
+       
+        .loginInput::placeholder {
+        padding-left: 50px;
+
+
+        }
+    }
+}
