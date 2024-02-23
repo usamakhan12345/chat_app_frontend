@@ -1,0 +1,23 @@
+.DrawerContainer{
+    .heading{
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        font-size: 32px;
+        color: #fff;
+    }
+    hr{
+        color: #fff;
+       
+    }
+    .logOutIcon{
+        color: #fff;
+        font-size: 32px;
+        position: relative;
+        font-weight: bold;
+        top: 45px;
+        cursor: pointer;
+        
+    }
+}
