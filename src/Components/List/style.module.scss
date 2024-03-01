@@ -1,0 +1,22 @@
+.listWrapper{
+    width: 100%;
+    cursor: pointer;
+    &.active{
+        opacity: 0.5;
+    }
+    .listItem{
+        background-color: 'background.paper' ;
+         margin-top:  1 ; 
+         height : 70px ; 
+        
+         .listAvatar {
+            height:  100%;
+            display: block;
+            margin: auto;
+            .avatar{
+                height: 100%;
+            }
+         }
+        
+    }
+}

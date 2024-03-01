@@ -4,7 +4,7 @@ import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import styles from './style.module.scss'
 import { CiLogout } from "react-icons/ci";
-
+import List from "../List/index"
 export default function TemporaryDrawer() {
 
    return (
@@ -15,12 +15,18 @@ export default function TemporaryDrawer() {
         variant='permanent'
       >
         <Box
-          sx={{height : '100vh' , width : '360px' , backgroundColor : '#8D8F8E'}}
+          sx={{height : '100vh' , width : '340px' , backgroundColor : '#8D8F8E'}}
         //   role="presentation"
         >   
-            <CiLogout className={styles.logOutIcon}/>
-            <h3 className={styles.heading}>Chat App</h3>
-          <Divider />
+        <CiLogout className={styles.logOutIcon}/>
+        <h3 className={styles.heading}>Chat App</h3>
+        <Box
+        sx={{display : 'flex' , justifyContent : 'center'}}
+        >
+        <List/>
+
+        </Box>
+        <Divider />
         </Box>
       </Drawer>
     </div>
