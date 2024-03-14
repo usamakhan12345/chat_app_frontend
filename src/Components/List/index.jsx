@@ -15,7 +15,7 @@ export default function AlignItemsList() {
         <ListItemAvatar className={styles.listAvatar} >
           <Avatar className={styles.avatar} alt="Usama khan" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
-        <ListItemText
+        <ListItemText className={styles.listItemText}
           primary="Muhammad Osama khan"
           secondary = "shehzadausamakhan@gmail.com"
 
