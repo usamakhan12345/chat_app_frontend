@@ -5,7 +5,8 @@ import Drawer from "../../Components/Drawer/index"
 import { FaLocationArrow } from "react-icons/fa6";
 import { CiFaceSmile } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";  
-
+import Messages from "../../Components/MessageList/index"
+import ChatHeader from "../../Components/ChatHeader/index"
 const Chat = () => {
   const[message, setMessage] = useState()
   const[allMessages , setAllMessages] = useState([])
@@ -20,16 +21,14 @@ const Chat = () => {
       <Drawer/>
     </Box>
     <Box className={styles.chatContainer}>
-      <Box>
-
-      <ul>
-        <li style={{backgroundColor : 'red' , width : '50%' , textAlign : 'left' , position : 'absolute' , right : 0}}>usama</li>
-      </ul>
+        <ChatHeader/>
+      <Box className={styles.messagesContainer}>
+      <Messages allMessages = {allMessages}/>
       </Box>
       <Box className={styles.inputContainer}>
       <CiFaceSmile className={styles.emojiIcon}/>
       <FaPlus className={styles.plusIcon} />
-     <input value={message} onChange={(e)=> setMessage(e.target.value)} className={styles.messageInput} type="text" />
+     <input placeholder='Type a message' value={message} onChange={(e)=> setMessage(e.target.value)} className={styles.messageInput} type="text" />
       <FaLocationArrow onClick={()=>userSendMessage(message)} className={styles.messageIcon}/>
       </Box>
     </Box>

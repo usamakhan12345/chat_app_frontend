@@ -6,7 +6,14 @@
         font-family: 'Courier New', Courier, monospace;
         font-weight: bold;
         font-size: 32px;
+        padding: 15px 5px;
+        margin-bottom: 0px;
+        margin-top: 5px;
         color: #fff;
+        position: sticky;
+        background-color: #333;
+        top: 0px;
+        z-index: 222;
         
     }
     hr{
@@ -18,7 +25,10 @@
         font-size: 32px;
         position: relative;
         font-weight: bold;
-        top: 45px;
+        z-index: 333;
+        position: sticky;
+
+        top: 12px;
         cursor: pointer;
         
     }
