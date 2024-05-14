@@ -2,44 +2,53 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
-import styles from './style.module.scss'
+import styles from "./style.module.scss";
 import { CiLogout } from "react-icons/ci";
-import List from "../List/index"
+import List from "../List/index";
 import { useEffect } from "react";
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer({ allUsers, getCurrentUserChat }) {
   useEffect(() => {
     const handleScroll = () => {
-      const drawer = document.querySelector('.MuiDrawer-paper');
+      const drawer = document.querySelector(".MuiDrawer-paper");
       const heading = document.querySelector(`.${styles.heading}`);
       if (drawer.scrollTop > 0) {
-        heading.style.backgroundColor = '#333';
+        heading.style.backgroundColor = "#333";
       } else {
-        heading.style.backgroundColor = 'transparent';
+        heading.style.backgroundColor = "transparent";
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-   return (
+  return (
     <div>
       <Drawer
         open={true}
         className={styles.DrawerContainer}
-        variant='permanent'
+        variant="permanent"
       >
         <Box
-          sx={{ width : '340px' , backgroundColor : '#8D8F8E' }}
-        //   role="presentation"
-        >   
-        <CiLogout className={styles.logOutIcon}/>
-        <h3 className={styles.heading}>Chat App</h3>
-        <Box
-        sx={{display : 'flex' , justifyContent : 'center' , flexDirection : 'column'}}
+          sx={{ width: "340px", backgroundColor: "#8D8F8E" }}
+          //   role="presentation"
         >
+          <CiLogout className={styles.logOutIcon} />
+          <h3 className={styles.heading}>Chat App</h3>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            {allUsers &&
+              allUsers.map((user) => (
+                <List user={user} getCurrentUserChat={getCurrentUserChat} />
+              ))}
+            {/* <List/>
         <List/>
         <List/>
         <List/>
@@ -47,12 +56,9 @@ export default function TemporaryDrawer() {
         <List/>
         <List/>
         <List/>
-        <List/>
-        <List/>
-        <List/>
-
-        </Box>
-        <Divider />
+        <List/> */}
+          </Box>
+          <Divider />
         </Box>
       </Drawer>
     </div>

@@ -1,37 +1,27 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import {rootReducer} from "../rootReducer.jsx"
-import AuthReducer from '../reducers/authReducer.jsx'
-// import thunkMiddleware from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+import Authslice from "../reducers/authReducer";
+import { LoginRequest } from "../Services/authServices.jsx";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { combineReducers } from "redux";
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// }
-// const persistedReducer = persistReducer(persistConfig, rootReducer)
-// // let middlewares = [thunkMiddleware];
+const rootReducer = combineReducers({
+  auth: Authslice,
+  [LoginRequest.reducerPath]: LoginRequest.reducer,
+});
 
-
-// const store = configureStore({
-//   reducer: persistedReducer,
-// //   middleware: middlewares,
-// });
-// let persistor = persistStore(store);
-
-
-//   const configureStores = () => {
-//   return { persistor, store };
-
-
-
-// };
-
+const persistConfig = {
+  key: "root",
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    auth: AuthReducer,
-  },
-})
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(LoginRequest.middleware),
+});
 
-// export default configureStores;
+export const persistor = persistStore(store);
+setupListeners(store.dispatch);

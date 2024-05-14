@@ -1,4 +1,3 @@
-export const chatConstants  = {
-
-    baseUrl : 'localhost:3000'
-}
+export const chatConstants = {
+  baseUrl: "http://localhost:8000/",
+};
