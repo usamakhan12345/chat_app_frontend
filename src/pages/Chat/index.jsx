@@ -10,15 +10,18 @@ import ChatHeader from "../../Components/ChatHeader/index";
 import { FaMicrophone } from "react-icons/fa";
 import { useGetAllUsersQuery } from "../../Components/redux/Services/authServices";
 import { io } from "socket.io-client";
-
+import EmojiPicker from "emoji-picker-react";
 const Chat = () => {
   const [message, setMessage] = useState();
   const [allMessages, setAllMessages] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState();
+  const [viewImagePicker, setViewImagePicker] = useState(false);
+  const [emojis, setEmojis] = useState([]);
   const { data, error, isLoading } = useGetAllUsersQuery();
-
   const socket = useMemo(() => io("http://localhost:8000/"), []);
+
+  // const allSelectedEmojis = e
   useEffect(() => {
     // Connect to the server socket
     socket.on("connect", () => {
@@ -26,7 +29,6 @@ const Chat = () => {
     });
 
     socket.on("all-chat-messages", (msg) => {
-      console.log("messages", msg);
       setAllMessages((prevMessages) => [...prevMessages, msg]);
       return () => {
         socket.disconnect();
@@ -53,13 +55,14 @@ const Chat = () => {
   }, [data]);
 
   const userSendMessage = (userMessage) => {
-    console.log("func is working");
-
-    // setAllMessages([...allMessages, userMessage]);
-    console.log("allMessages", allMessages);
-
     socket.emit("chat-message", userMessage);
     setMessage("");
+    setEmojis([]);
+  };
+  const myEmojiClick = (emojiobject) => {
+    const { emoji } = emojiobject;
+    setMessage((prev) => (prev ? prev + emoji : emoji));
+    setEmojis([emoji, ...emojis]);
   };
   return (
     <Box className={styles.chatWrapper}>
@@ -72,7 +75,18 @@ const Chat = () => {
           <Messages allMessages={allMessages} />
         </Box>
         <Box className={styles.inputContainer}>
-          <CiFaceSmile className={styles.emojiIcon} />
+          <EmojiPicker
+            className={
+              viewImagePicker
+                ? styles.ViewemojiIconPicker
+                : styles.emojiIconPicker
+            }
+            onEmojiClick={myEmojiClick}
+          />
+          <CiFaceSmile
+            className={styles.emojiIcon}
+            onClick={() => setViewImagePicker((prev) => !prev)}
+          />
           <FaPlus className={styles.plusIcon} />
           <input
             placeholder="Type a message"

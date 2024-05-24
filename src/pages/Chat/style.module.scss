@@ -41,7 +41,33 @@ html {
         height: 33px;
         margin-right: 5px;
         margin-left: 14px;
+        // display: none;
+        cursor: pointer;
       }
+      .emojiIconPicker{
+                color: #54656f;
+                  width: 40px;
+                  height: 33px;
+                  margin-right: 5px;
+                  margin-left: 14px;
+                  position: absolute;
+                  bottom: 90%;
+                  // display: none;
+                  cursor: pointer;
+                  display: none;
+      }
+                .ViewemojiIconPicker {
+                  color: #54656f;
+                  width: 40px;
+                  height: 33px;
+                  margin-right: 5px;
+                  margin-left: 14px;
+                  position: absolute;
+                  bottom: 90%;
+                  // display: none;
+                  cursor: pointer;
+                  // display: none; 
+                }
       .plusIcon {
         color: #54656f;
 

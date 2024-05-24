@@ -7,7 +7,7 @@ const MessageList = ({ allMessages }) => {
 
   return (
     <>
-      <Box>
+      <Box className={styles.messageContainer}>
         <ul className={styles.listHead}>
           {Array.isArray(allMessages) &&
             allMessages.map((value, index) => (
